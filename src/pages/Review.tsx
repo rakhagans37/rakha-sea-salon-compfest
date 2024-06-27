@@ -89,7 +89,7 @@ export const ReviewPage = () => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          {reviews.map((review, index) => {
+          {reviews.map((review) => {
             return (
               <div className="items-center border-2 rounded-md  border-cashmere-300 p-5">
                 <ReviewCard
