@@ -5,7 +5,14 @@ import logo from "../assets/logo.jpeg";
 import type { CustomFlowbiteTheme } from "flowbite-react";
 import { useEffect, useState } from "react";
 
-const customTheme: CustomFlowbiteTheme["navbar"] = {
+// NavbarProps interface
+interface NavbarProps {
+  route: string;
+  scrollable?: boolean;
+}
+
+// Custom theme for the navbar
+const mainTheme: CustomFlowbiteTheme["navbar"] = {
   root: {
     base: "bg-transparent text-blue-dianne-900 rounded-none py-6 px-10 md:absolute top-0 z-50 w-full transition-all duration-300 ease-in-out",
   },
@@ -18,7 +25,8 @@ const customTheme: CustomFlowbiteTheme["navbar"] = {
   },
 };
 
-const customThemeScrolled: CustomFlowbiteTheme["navbar"] = {
+// Custom theme for the navbar when the user has scrolled
+const scrolledTheme: CustomFlowbiteTheme["navbar"] = {
   root: {
     base: "bg-blue-dianne-800 text-white rounded-none py-6 px-10 fixed top-0 z-50 w-full transition-all duration-300 ease-in-out shadow-md",
   },
@@ -31,9 +39,23 @@ const customThemeScrolled: CustomFlowbiteTheme["navbar"] = {
   },
 };
 
-export function NavbarCustom() {
+const nonScrollableTheme: CustomFlowbiteTheme["navbar"] = {
+  root: {
+    base: "bg-blue-dianne-800 text-white rounded-none py-6 px-10 z-50 w-full transition-all duration-300 ease-in-out shadow-md",
+  },
+  link: {
+    base: "text-white font-semibold text-md",
+    active: {
+      on: "text-cashmere-300",
+      off: "text-white hover:text-cashmere-300",
+    },
+  },
+};
+
+export const NavbarCustom: React.FC<NavbarProps> = ({ route, scrollable }) => {
   const [scrolled, setScrolled] = useState(false);
 
+  // Logic if the user has scrolled
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 150) {
@@ -43,15 +65,24 @@ export function NavbarCustom() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  // Navbar component
   return (
     <div>
-      <Navbar theme={scrolled == true ? customThemeScrolled : customTheme}>
+      <Navbar
+        theme={
+          scrollable == false
+            ? nonScrollableTheme
+            : scrolled == false
+              ? mainTheme
+              : scrolledTheme
+        }
+      >
         <Navbar.Brand href="#">
           <img
             src={logo}
@@ -64,14 +95,17 @@ export function NavbarCustom() {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Navbar.Link href="#" active>
+          <Navbar.Link href="/" active={route === "/"}>
             Home
           </Navbar.Link>
           <Navbar.Link href="#about">About</Navbar.Link>
           <Navbar.Link href="#">Services</Navbar.Link>
           <Navbar.Link href="#">Contact</Navbar.Link>
+          <Navbar.Link href="/reviews" active={route === "/reviews"}>
+            Reviews
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
   );
-}
+};

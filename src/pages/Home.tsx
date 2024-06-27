@@ -16,10 +16,10 @@ import { ProfileCard } from "../components/ProfileCard";
 function Header() {
   return (
     <>
-      <NavbarCustom />
+      <NavbarCustom route={"/"} />
       <div className="absolute z-10 h-screen w-screen bg-gradient-to-t from-cashmere-300/30 to-transparent">
-        <div className="flex h-full flex-col items-start sm:items-center justify-center sm:justify-end p-8 sm:p-32">
-          <h1 className=" text-2xl sm:text-5xl font-bold text-white">
+        <div className="flex h-full flex-col items-start justify-center p-8 sm:items-center sm:justify-end sm:p-32">
+          <h1 className=" text-2xl font-bold text-white sm:text-5xl">
             Welcome to SEA Salon
           </h1>
           <p className="text-2xl text-white">
@@ -37,11 +37,11 @@ function Content() {
     <>
       <div className="z-20">
         {/* Slogan 1 */}
-        <div className="grid gap-6 sm:grid-cols-2 items-center justify-center">
+        <div className="grid items-center justify-center gap-6 sm:grid-cols-2">
           {/* Slogan 1 Text */}
-          <div className="sm:mr-10 text-center sm:text-end text-blue-dianne-900">
-            <h2 className="text-lg sm:text-2xl font-bold">SEA Salon</h2>
-            <p className="text-3xl sm:text-5xl font-extrabold leading-tight">
+          <div className="text-center text-blue-dianne-900 sm:mr-10 sm:text-end">
+            <h2 className="text-lg font-bold sm:text-2xl">SEA Salon</h2>
+            <p className="text-3xl font-extrabold leading-tight sm:text-5xl">
               The Place Where{" "}
               <span className="bg-gradient-to-br from-blue-dianne-600 to-cashmere-200 bg-clip-text text-transparent">
                 Beauty
@@ -62,14 +62,14 @@ function Content() {
         {/* High Ruler */}
         <div className="mb-4 mt-4 h-1 bg-cashmere-300"></div>
         {/* Slogan2 */}
-        <div className="grid gap-6 sm:grid-cols-2 items-center justify-center">
+        <div className="grid items-center justify-center gap-6 sm:grid-cols-2">
           {/* Image Slogan 2 */}
           <div>
             <img src={image2} className=" h-[500px] w-full object-cover" />
           </div>
           {/* Text Slogan 2 */}
-          <div className="sm:mr-10 text-center sm:text-start text-blue-dianne-900">
-            <p className="text-3xl sm:text-5xl font-extrabold leading-tight">
+          <div className="text-center text-blue-dianne-900 sm:mr-10 sm:text-start">
+            <p className="text-3xl font-extrabold leading-tight sm:text-5xl">
               Unlock Your Radiance with{" "}
               <span className="bg-gradient-to-br from-blue-dianne-600 to-cashmere-200 bg-clip-text text-transparent">
                 Expert Care
@@ -80,14 +80,14 @@ function Content() {
       </div>
 
       {/* Services */}
-      <div className="mt-24 flex flex-col items-center justify-center z-20 gap-10">
+      <div className="z-20 mt-24 flex flex-col items-center justify-center gap-10">
         <div className="text-center">
-          <h3 className="text-3xl sm:text-5xl font-bold">Our Services</h3>
+          <h3 className="text-3xl font-bold sm:text-5xl">Our Services</h3>
           <p className="text-sm sm:text-lg">
             We offer a wide range of services to cater to all your beauty needs
           </p>
         </div>
-        <div className="grid sm:grid-cols-3 gap-10 justify-between">
+        <div className="grid justify-between gap-10 sm:grid-cols-3">
           <CardCustom
             imgSrc={haircutsImage}
             imgAlt="Card Image"
@@ -110,14 +110,14 @@ function Content() {
       </div>
 
       {/* Contact */}
-      <div className="mt-24 flex flex-col items-center justify-center z-20 gap-10">
+      <div className="z-20 mt-24 flex flex-col items-center justify-center gap-10">
         <div className="text-center">
-          <h3 className="text-2xl sm:text-5xl font-bold">Contact Us</h3>
+          <h3 className="text-2xl font-bold sm:text-5xl">Contact Us</h3>
           <p className="text-sm sm:text-lg">
             We offer a wide range of services to cater to all your beauty needs
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 gap-10 justify-between">
+        <div className="grid justify-between gap-10 sm:grid-cols-2">
           <ProfileCard
             imgSrc={adminImage}
             imgAlt="Card Image"
@@ -130,24 +130,23 @@ function Content() {
             imgAlt="Card Image"
             username="Sekar"
             phoneNumber="08164829372"
-            role="Admin 2" />
+            role="Admin 2"
+          />
         </div>
       </div>
     </>
   );
 }
 
-function Home() {
+export const HomePage = () => {
   return (
     <div className="font-poppins">
       <Header />
-      <div className="flex h-max flex-col bg-cashmere-50 object-cover py-10 px-4 sm:p-14 lg:p-32 relative">
-        <img src={blurOrange} alt="" className="absolute left-0 z-10"/>
+      <div className="relative flex h-max flex-col bg-cashmere-50 object-cover px-4 py-10 sm:p-14 lg:p-32">
+        <img src={blurOrange} alt="" className="absolute left-0 z-10 w-3/4" />
         <Content />
       </div>
       <FooterCustom />
     </div>
   );
-}
-
-export default Home;
+};
