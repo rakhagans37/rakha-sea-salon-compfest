@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Button, CustomFlowbiteTheme, FlowbiteTheme } from "flowbite-react";
+import { Button, CustomFlowbiteTheme } from "flowbite-react";
 
 interface ButtonCustomProps {
     theme?: CustomFlowbiteTheme["button"];

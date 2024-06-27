@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Blockquote, Rating } from "flowbite-react";
+import { Blockquote, Rating } from "flowbite-react";
 
 interface ReviewCardProps {
   username: string;
