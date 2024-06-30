@@ -15,11 +15,13 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.14",
+    "firebase": "^10.12.2",
     "flowbite-react": "^0.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-ratings-declarative": "^3.4.1",
-    "react-star-ratings": "^2.3.0"
+    "react-star-ratings": "^2.3.0",
+    "react-time-picker": "^7.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.67",
