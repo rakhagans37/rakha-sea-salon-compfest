@@ -29,7 +29,7 @@ const mainTheme: CustomFlowbiteTheme["textInput"] = {
   },
 };
 
-export const InputText: React.FC<InputTextProps> = ({
+export const InputNumber: React.FC<InputTextProps> = ({
   id,
   placeholder,
   required,
@@ -42,7 +42,7 @@ export const InputText: React.FC<InputTextProps> = ({
 }) => {
   const ErrorBanner = () => {
     if (errorTerm === true) {
-      return <p className="text-red-600 text-sm px-1 py-1">{errorMessage}</p>;
+      return <p className="text-red-600 text-sm p-1">{errorMessage}</p>;
     }
   };
   return (
@@ -52,7 +52,7 @@ export const InputText: React.FC<InputTextProps> = ({
       </div>
       <TextInput
         id={id}
-        type="text"
+        type="number"
         placeholder={placeholder}
         required={required ?? true}
         theme={theme ?? mainTheme}

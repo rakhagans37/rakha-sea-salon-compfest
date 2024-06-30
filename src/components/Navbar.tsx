@@ -98,11 +98,11 @@ export const NavbarCustom: React.FC<NavbarProps> = ({ route, scrollable }) => {
           <Navbar.Link href="/" active={route === "/"}>
             Home
           </Navbar.Link>
-          <Navbar.Link href="#about">About</Navbar.Link>
-          <Navbar.Link href="#">Services</Navbar.Link>
-          <Navbar.Link href="#">Contact</Navbar.Link>
           <Navbar.Link href="/reviews" active={route === "/reviews"}>
             Reviews
+          </Navbar.Link>
+          <Navbar.Link href="/reservation" active={route === "/reservation"}>
+            Reservation
           </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
