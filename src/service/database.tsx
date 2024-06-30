@@ -1,12 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {
   collection,
   addDoc,
   getFirestore,
   getDocs,
-  DocumentData,
 } from "firebase/firestore";
 import { Reservation } from "../models/Reservation";
 import { Review } from "../models/Review";
@@ -27,7 +25,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 // Create reviews
