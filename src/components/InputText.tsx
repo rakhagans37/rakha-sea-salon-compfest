@@ -12,8 +12,8 @@ interface InputTextProps {
   textState: any;
   setTextState: any;
   label: string;
-  errorTerm: boolean;
-  errorMessage: string;
+  errorTerm?: boolean;
+  errorMessage?: string;
 }
 
 const mainTheme: CustomFlowbiteTheme["textInput"] = {
