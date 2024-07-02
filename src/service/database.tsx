@@ -5,9 +5,14 @@ import {
   addDoc,
   getFirestore,
   getDocs,
+  where,
+  query,
+  limit,
 } from "firebase/firestore";
 import { Reservation } from "../models/Reservation";
 import { Review } from "../models/Review";
+import { User } from "../models/User";
+import { Service } from "../models/Services";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -61,6 +66,83 @@ export async function createReservation(reservationModel: Reservation) {
       username: reservationModel.name,
       dateTime: reservationModel.dateTime,
       service: reservationModel.service,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+export async function registerUser(userModel: User) {
+  let seeUser = await searchUser(userModel.email);
+  if (seeUser !== undefined) {
+    throw new Error("User already exists");
+  }
+  try {
+    const docRef = await addDoc(collection(db, "users"), {
+      id: userModel.id,
+      fullName: userModel.fullName,
+      email: userModel.email,
+      password: userModel.password,
+      role: userModel.role,
+      phoneNumber: userModel.phoneNumber,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+export async function login(email: string, password: string) {
+  const querySnapshot = query(
+    collection(db, "users"),
+    where("email", "==", email),
+    where("password", "==", password),
+    limit(1),
+  );
+
+  const data = await getDocs(querySnapshot);
+  if (!data.metadata.fromCache) {
+    const users = new User(
+      data.docs[0].data().id,
+      data.docs[0].data().fullName,
+      data.docs[0].data().email,
+      data.docs[0].data().password,
+      data.docs[0].data().role,
+      data.docs[0].data().phoneNumber,
+    );
+    return users;
+  } else {
+    throw new Error("Invalid email or password");
+  }
+}
+
+export async function searchUser(email: string) {
+  const querySnapshot = query(
+    collection(db, "users"),
+    where("email", "==", email),
+  );
+  const data = await getDocs(querySnapshot);
+  if (data.docs.length > 0) {
+    const users = new User(
+      data.docs[0].data().id,
+      data.docs[0].data().fullName,
+      data.docs[0].data().email,
+      data.docs[0].data().password,
+      data.docs[0].data().role,
+      data.docs[0].data().phoneNumber,
+    );
+    return users;
+  }
+  return undefined;
+}
+
+export async function createService(serviceModel: Service) {
+  try {
+    const docRef = await addDoc(collection(db, "services"), {
+      id: serviceModel.id,
+      serviceName: serviceModel.serviceName,
+      duration: serviceModel.duration,
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {

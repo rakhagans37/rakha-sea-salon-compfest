@@ -139,6 +139,13 @@ function Content() {
 }
 
 export const HomePage = () => {
+  if (localStorage.getItem("user") == null) {
+  } else if (
+    JSON.parse(localStorage.getItem("user") as string).role !== "Customer"
+  ) {
+    window.location.href = "/admin";
+  }
+
   return (
     <div className="font-poppins">
       <Header />
