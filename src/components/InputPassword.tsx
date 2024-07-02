@@ -26,7 +26,6 @@ const mainTheme: CustomFlowbiteTheme["textInput"] = {
 
 export const InputPassword: React.FC<InputPasswordProps> = ({
   id,
-  passwordState,
   setPasswordState,
   placeholder,
   label,
