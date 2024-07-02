@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ModalCustom } from "../components/Modal";
 import { NavbarCustom } from "../components/Navbar";
 import { InputText } from "../components/InputText";
 import { ButtonCustom } from "../components/Button";
-import { ReviewCard } from "../components/ReviewCard";
 import { FooterCustom } from "../components/Footer";
 import { InputNumber } from "../components/InputNumber";
 import { Service } from "../models/Services";
