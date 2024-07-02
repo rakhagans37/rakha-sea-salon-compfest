@@ -17,6 +17,14 @@ export const ReservationPage = () => {
   const [date, setDate] = useState(new Date().getTime());
   const [time, setTime] = useState("09:00");
 
+  if(!localStorage.getItem("user")) {
+    window.location.href = "/login";
+  } else if(
+    JSON.parse(localStorage.getItem("user") as string).role !== "Customer"
+  ) {
+    window.location.href = "/admin";
+  }
+
   const submitReservation = () => {
     if (
       username.trim() === "" ||

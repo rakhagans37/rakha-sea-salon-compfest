@@ -72,40 +72,119 @@ export const NavbarCustom: React.FC<NavbarProps> = ({ route, scrollable }) => {
   }, []);
 
   // Navbar component
-  return (
-    <div>
-      <Navbar
-        theme={
-          scrollable == false
-            ? nonScrollableTheme
-            : scrolled == false
-              ? mainTheme
-              : scrolledTheme
-        }
-      >
-        <Navbar.Brand href="#">
-          <img
-            src={logo}
-            className="mr-3 h-10 w-10 rounded-full"
-            alt="Flowbite React Logo"
-          />
-          <span className="self-center whitespace-nowrap text-xl font-extrabold">
-            SEA Salon
-          </span>
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse>
-          <Navbar.Link href="/" active={route === "/"}>
-            Home
-          </Navbar.Link>
-          <Navbar.Link href="/reviews" active={route === "/reviews"}>
-            Reviews
-          </Navbar.Link>
-          <Navbar.Link href="/reservation" active={route === "/reservation"}>
-            Reservation
-          </Navbar.Link>
-        </Navbar.Collapse>
-      </Navbar>
-    </div>
-  );
+  if (localStorage.getItem("user") == null) {
+    return (
+      <div>
+        <Navbar
+          theme={
+            scrollable == false
+              ? nonScrollableTheme
+              : scrolled == false
+                ? mainTheme
+                : scrolledTheme
+          }
+        >
+          <Navbar.Brand href="#">
+            <img
+              src={logo}
+              className="mr-3 h-10 w-10 rounded-full"
+              alt="Flowbite React Logo"
+            />
+            <span className="self-center whitespace-nowrap text-xl font-extrabold">
+              SEA Salon
+            </span>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+            <Navbar.Link href="/" active={route === "/"}>
+              Home
+            </Navbar.Link>
+            <Navbar.Link href="/reviews" active={route === "/reviews"}>
+              Reviews
+            </Navbar.Link>
+            <Navbar.Link href="/reservation" active={route === "/reservation"}>
+              Reservation
+            </Navbar.Link>
+            <Navbar.Link href="/login" active={route === "/login"}>
+              Login
+            </Navbar.Link>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
+    );
+  } else if(JSON.parse(localStorage.getItem("user") as string).role === "Customer"){
+    return (
+      <div>
+        <Navbar
+          theme={
+            scrollable == false
+              ? nonScrollableTheme
+              : scrolled == false
+                ? mainTheme
+                : scrolledTheme
+          }
+        >
+          <Navbar.Brand href="#">
+            <img
+              src={logo}
+              className="mr-3 h-10 w-10 rounded-full"
+              alt="Flowbite React Logo"
+            />
+            <span className="self-center whitespace-nowrap text-xl font-extrabold">
+              SEA Salon
+            </span>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+            <Navbar.Link href="/" active={route === "/"}>
+              Home
+            </Navbar.Link>
+            <Navbar.Link href="/reviews" active={route === "/reviews"}>
+              Reviews
+            </Navbar.Link>
+            <Navbar.Link href="/reservation" active={route === "/reservation"}>
+              Reservation
+            </Navbar.Link>
+            <Navbar.Link href="/logout" active={route === "/logout"}>
+              Logout
+            </Navbar.Link>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Navbar
+          theme={
+            scrollable == false
+              ? nonScrollableTheme
+              : scrolled == false
+                ? mainTheme
+                : scrolledTheme
+          }
+        >
+          <Navbar.Brand href="#">
+            <img
+              src={logo}
+              className="mr-3 h-10 w-10 rounded-full"
+              alt="Flowbite React Logo"
+            />
+            <span className="self-center whitespace-nowrap text-xl font-extrabold">
+              SEA Salon
+            </span>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+            <Navbar.Link href="/admin" active={route === "/admin"}>
+              Admin
+            </Navbar.Link>
+            <Navbar.Link href="/logout" active={route === "/logout"}>
+              Logout
+            </Navbar.Link>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
+    );
+  }
 };
