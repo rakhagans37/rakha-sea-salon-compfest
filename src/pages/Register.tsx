@@ -32,7 +32,7 @@ export const RegisterPage = () => {
     try {
       registerUser(
         new User(generateId(), fullName, email, password, "Customer", phone),
-      ).then((res) => {
+      ).then(() => {
         // Redirect to the login Page
         window.location.href = "/login";
       });
