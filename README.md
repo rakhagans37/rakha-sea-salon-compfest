@@ -105,13 +105,22 @@ _Below is an procedure to run this project on your local._
    ```sh
    git clone https://github.com/rakhagnas37/rakha-sea-salon-compfest.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Run developer mode for project.
+3. Run developer mode for project.
    ```sh
-   npm run dev;
+   npm run dev
    ```
+4. Developer mode will used localhost as localserver
+   ```sh
+   VITE v5.3.1  ready in 1206 ms
+
+    ➜  Local:   http://localhost:5173/
+    ➜  Network: use --host to expose
+    ➜  press h + enter to show help
+   ```
+5. Run localserver on web
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
